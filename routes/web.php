@@ -81,7 +81,7 @@ Route::get('/usuarios/edit/{usuario}', [UsuariosController::class, 'edit']);
 Route::post('/usuarios/store', [UsuariosController::class, 'store']); 
 
 // Ruta para modificar producto
-Route::put('/usuarios/update/{codigo}', [UsuariosController::class, 'update']);
+Route::put('/usuarios/update/{id}', [UsuariosController::class, 'update']);
 
 
 // Ruta para eliminar producto
@@ -104,7 +104,7 @@ Route::get('tramites/edit/{usuario}', [TramitesController::class, 'edit']);
 Route::post('tramites/store', [TramitesController::class, 'store']); 
 
 // Ruta para modificar producto
-Route::put('tramites/update/{codigo}', [TramitesController::class, 'update']);
+Route::put('tramites/update/{id}', [TramitesController::class, 'update']);
 
 
 // Ruta para eliminar producto

@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>Visitas</title>
-</head>
-<body>
+
     {{-- Heredamos la estructura del archivo app.blade.php --}}
     @extends('layout.app')
 
@@ -53,30 +46,5 @@
     </div>
     @endsection
 
-    <script>
-        function destroy(button) {
-            const url = button.getAttribute('url');
-            const token = button.getAttribute('token');
-
-            if (confirm('¿Estás seguro de que deseas eliminar esta visita?')) {
-                fetch(url, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': token,
-                        'Content-Type': 'application/json'
-                    },
-                })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.reload(); 
-                    } else {
-                        alert('Error al eliminar la visita.');
-                    }
-                });
-            }
-        }
-    </script>
     
-</body>
-</html>
->
+ 
