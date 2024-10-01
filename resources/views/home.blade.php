@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{-- Aquí irá el título de cada página--}}
     <title>@yield('title')</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js']) 
+    
 </head>
 <body>
     {{-- Nuestro menú --}}
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark mb-4">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Visitas a Oficina</a>
+            <li><a class="navbar-brand" href="#">Visitas a Oficina</a> </li>         
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -74,14 +74,17 @@
             </div>
         </div>
     </nav> 
-            <div class="container-fluid">
-            {{-- Aquí irá el contenido de todas las páginas --}}
-            @yield('content') 
 
-            </div> 
+    {{-- Mensaje de bienvenida --}}
+    <div class="container text-center my-5">
+        <div class="alert alert-primary" role="alert">
+            <h1 class="display-4">¡Bienvenido a la Oficina!</h1>
+            <p class="lead">Estamos aquí para ayudarle con sus visitas y trámites.</p>
         </div>
-   
-    </body>
+    </div>
+
+    {{-- Resto del contenido de la página --}}
+
+    
+</body>
 </html>
-
-

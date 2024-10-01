@@ -12,7 +12,8 @@
     {{-- Definimos el título --}}
     @section('title', 'Visitas')
 
-    @section('content')
+ {{-- Definimos el contenido --}}
+@section('content') 
     <div class="container-fluid">
         <h1>Visitas</h1>
         <h5>Listado de visitas</h5>
@@ -33,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($visita as $item)
+                @foreach ($visitas as $item)
                 <tr>
                     <td>{{ $item->id_visita }}</td>
                     <td>{{ $item->id_visitante }}</td>
@@ -67,7 +68,7 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        window.location.reload(); // Recargar la página para ver los cambios
+                        window.location.reload(); 
                     } else {
                         alert('Error al eliminar la visita.');
                     }
@@ -75,6 +76,7 @@
             }
         }
     </script>
-
+    
 </body>
 </html>
+>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class visita extends Model
+class visitas extends Model
 {
     use HasFactory;
 

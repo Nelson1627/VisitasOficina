@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\usuario;
+use App\Models\usuarios;
 use Illuminate\Http\Request;
 
 class UsuariosController extends Controller
 {
     public function index()
     {
-        $usuarios = usuario::all();
+        $usuarios = Usuarios::all();
         return view('usuarios.show')->with(['usuarios' => $usuarios]);
     }
 
@@ -27,22 +27,22 @@ class UsuariosController extends Controller
         ]);
 
         try {
-            usuario::create($data);
+            Usuarios::create($data);
             return redirect('/usuarios/show')->with('success', 'Usuario creado con éxito');
         } catch (\Exception $e) {
-            return redirect('/usuarios/create')->with('error', 'Error al crear usuario: ' . $e->getMessage());
+            return redirect('/usuarios/create')->with('error', 'Error al crear Usuarios: ' . $e->getMessage());
         }
     }
 
     public function show($id)
     {
-        $usuario = usuario::findOrFail($id);
+        $usuario = Usuarios::findOrFail($id);
         return view('usuarios.showDetail')->with(['usuario' => $usuario]);
     }
 
     public function edit($id)
     {
-        $usuario = usuario::findOrFail($id);
+        $usuario = Usuarios::findOrFail($id);
         return view('usuarios.update', ['usuario' => $usuario]);
     }
 
@@ -54,7 +54,7 @@ class UsuariosController extends Controller
             'correo' => 'required|email'
         ]);
 
-        $usuario = usuario::findOrFail($id);
+        $usuario = Usuarios::findOrFail($id);
         $usuario->update($data);
         return redirect('/usuarios/show')->with('success', 'Usuario actualizado con éxito');
     }
@@ -62,7 +62,7 @@ class UsuariosController extends Controller
     public function destroy($id)
     {
         try {
-            usuario::destroy($id);
+            Usuarios::destroy($id);
             return response()->json(['res' => true]);
         } catch (\Exception $e) {
             return response()->json(['res' => false, 'message' => $e->getMessage()]);

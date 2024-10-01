@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\informe;
+use App\Models\informes;
 use Illuminate\Http\Request;
 
 class InformesController extends Controller
 {
     public function index()
     {
-        $informes = informe::all();
+        $informes = informes::all();
         return view('informes.show')->with(['informes' => $informes]);
     }
 
@@ -28,22 +28,22 @@ class InformesController extends Controller
         ]);
 
         try {
-            informe::create($data);
+            informes::create($data);
             return redirect('/informes/show')->with('success', 'Informe creado con éxito');
         } catch (\Exception $e) {
-            return redirect('/informes/create')->with('error', 'Error al crear informe: ' . $e->getMessage());
+            return redirect('/informes/create')->with('error', 'Error al crear informes: ' . $e->getMessage());
         }
     }
 
     public function show($id)
     {
-        $informe = informe::findOrFail($id);
+        $informe = informes::findOrFail($id);
         return view('informes.showDetail')->with(['informe' => $informe]);
     }
 
     public function edit($id)
     {
-        $informe = informe::findOrFail($id);
+        $informe = informes::findOrFail($id);
         return view('informes.update', ['informe' => $informe]);
     }
 
@@ -56,7 +56,7 @@ class InformesController extends Controller
             'contenido' => 'required'
         ]);
 
-        $informe = informe::findOrFail($id);
+        $informe = informes::findOrFail($id);
         $informe->update($data);
         return redirect('/informes/show')->with('success', 'Informe actualizado con éxito');
     }
@@ -64,7 +64,7 @@ class InformesController extends Controller
     public function destroy($id)
     {
         try {
-            informe::destroy($id);
+            informes::destroy($id);
             return response()->json(['res' => true]);
         } catch (\Exception $e) {
             return response()->json(['res' => false, 'message' => $e->getMessage()]);

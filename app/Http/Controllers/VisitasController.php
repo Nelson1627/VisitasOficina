@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\visita;
+
+use App\Models\visitas;
 use Illuminate\Http\Request;
 
 class VisitasController extends Controller
 {
     public function index()
     {
-        $visita = visita::all();
+        $visita = visitas::all();
         return view('visitas.show')->with(['visitas' => $visita]);
     }
 
@@ -28,7 +29,7 @@ class VisitasController extends Controller
         ]);
 
         try {
-            visita::create($data);
+            visitas::create($data);
             return redirect('/visitas/show')->with('success', 'Visita creada con éxito');
         } catch (\Exception $e) {
             return redirect('/visitas/create')->with('error', 'Error al crear visita: ' . $e->getMessage());
@@ -37,13 +38,13 @@ class VisitasController extends Controller
 
     public function show($id)
     {
-        $visita = visita::findOrFail($id);
+        $visita = visitas::findOrFail($id);
         return view('visitas.showDetail')->with(['visita' => $visita]);
     }
 
     public function edit($id)
     {
-        $visita = visita::findOrFail($id);
+        $visita = visitas::findOrFail($id);
         return view('visitas.update', ['visita' => $visita]);
     }
 
@@ -56,7 +57,7 @@ class VisitasController extends Controller
             'proposito' => 'required'
         ]);
 
-        $visita = visita::findOrFail($id);
+        $visita = visitas::findOrFail($id);
         $visita->update($data);
         return redirect('/visitas/show')->with('success', 'Visita actualizada con éxito');
     }
@@ -64,7 +65,7 @@ class VisitasController extends Controller
     public function destroy($id)
     {
         try {
-            visita::destroy($id);
+            visitas::destroy($id);
             return response()->json(['res' => true]);
         } catch (\Exception $e) {
             return response()->json(['res' => false, 'message' => $e->getMessage()]);

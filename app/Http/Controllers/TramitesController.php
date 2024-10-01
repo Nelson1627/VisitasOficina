@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\tramite;
+use App\Models\Tramites;
 use Illuminate\Http\Request;
 
 class TramitesController extends Controller
 {
     public function index()
     {
-        $tramites = tramite::all();
+        $tramites =Tramites::all();
         return view('tramites.show')->with(['tramites' => $tramites]);
     }
 
@@ -29,7 +29,7 @@ class TramitesController extends Controller
         ]);
 
         try {
-            tramite::create($data);
+           Tramites::create($data);
             return redirect('/tramites/show')->with('success', 'Trámite creado con éxito');
         } catch (\Exception $e) {
             return redirect('/tramites/create')->with('error', 'Error al crear trámite: ' . $e->getMessage());
@@ -38,13 +38,13 @@ class TramitesController extends Controller
 
     public function show($id)
     {
-        $tramite = tramite::findOrFail($id);
+        $tramite =Tramites::findOrFail($id);
         return view('tramites.showDetail')->with(['tramite' => $tramite]);
     }
 
     public function edit($id)
     {
-        $tramite = tramite::findOrFail($id);
+        $tramite =Tramites::findOrFail($id);
         return view('tramites.update', ['tramite' => $tramite]);
     }
 
@@ -58,7 +58,7 @@ class TramitesController extends Controller
             'fecha_creacion' => 'required|date'
         ]);
 
-        $tramite = tramite::findOrFail($id);
+        $tramite =Tramites::findOrFail($id);
         $tramite->update($data);
         return redirect('/tramites/show')->with('success', 'Trámite actualizado con éxito');
     }
@@ -66,7 +66,7 @@ class TramitesController extends Controller
     public function destroy($id)
     {
         try {
-            tramite::destroy($id);
+           Tramites::destroy($id);
             return response()->json(['res' => true]);
         } catch (\Exception $e) {
             return response()->json(['res' => false, 'message' => $e->getMessage()]);
