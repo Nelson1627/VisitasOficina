@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Visitante</title>
+    <title>Detalles de los  Visitantes</title>
 </head>
 <body>
     {{-- Heredamos la estructura del archivo app.blade.php --}}
@@ -15,39 +15,39 @@
     {{-- Definimos el contenido --}}
     @section('content')
 
-    <h1 class="text-center">Detalles del Visitante</h1>
+    <h1 class="text-center">Detalles de los Visitantes</h1>
     <hr>
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <strong>ID Visitante:</strong> {{$visitantes->id_visitante}}
-            </div>
-            <div class="col-6">
-                <strong>Nombre:</strong> {{$visitantes->nombre}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <strong>Documento ID:</strong> {{$visitantes->documento_id}}
-            </div>
-            <div class="col-6">
-                <strong>Teléfono:</strong> {{$visitantes->telefono}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <strong>Correo:</strong> {{$visitantes->correo}}
-            </div>
-        </div>
-    </div>
+            {{-- Botón para ir al formulario a agregar visitas --}}
+            <a href="/visitas/create" class="btn btn-danger">Agregar nueva visita</a>
 
-    <div class="col-12 mt-3">
-        <a href="/visitantes/edit/{{$visitantes->id_visitante}}" class="btn btn-success">Modificar</a>
-        <a href="/visitantes" class="btn btn-danger">Volver</a>
-    </div>
-
-    <hr>
+            <table class="table table-hover table-bordered mt-2">
+                <thead>
+                    <tr>
+                        <th>ID Visitante</th>
+                        <th>Nombre</th>
+                        <th>Documento ID</th>
+                        <th>Telefono</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($visitantes as $item)
+                    <tr>
+                        <td>{{ $item->id_visitante }}</td>
+                        <td>{{ $item->id_nombre }}</td>
+                        <td>{{ $item->documento_id }}</td>
+                        <td>{{ $item->correo }}</td>
+                      
+                        <td>
+                            
+                            <a href="/visitantes/edit/{{ $item->id_visitante }}" class="btn btn-success btn-sm">Modificar</a>
+                            <button class="btn btn-danger btn-sm" url="/visitas/destroy/{{ $item->id_visitante }}" token="{{ csrf_token() }}" onclick="destroy(this)">Eliminar</button>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
     @endsection
 </body>
 </html>

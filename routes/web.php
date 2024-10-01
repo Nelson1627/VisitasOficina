@@ -111,7 +111,7 @@ Route::put('tramites/update/{codigo}', [TramitesController::class, 'update']);
 Route::delete('tramites/destroy/{id}', [TramitesController::class, 'destroy']); 
 
 
-//Tramites
+//Informes
 
 // Ruta para mostrar la vista show.blade.php
 Route::get('informes/show', [InformesController::class, 'index']); 
@@ -126,7 +126,7 @@ Route::get('informes/edit/{usuario}', [InformesController::class, 'edit']);
 Route::post('informes/store', [InformesController::class, 'store']); 
 
 // Ruta para modificar producto
-Route::put('informes/update/{codigo}', [InformesController::class, 'update']);
+Route::put('informes/update/{id}', [InformesController::class, 'update']);
 
 
 // Ruta para eliminar producto
